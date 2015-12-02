@@ -1,6 +1,6 @@
 # NamedManager.js
 
-[![npm](https://img.shields.io/npm/v/ikagaka.namedmanager.js.svg?style=flat)](https://npmjs.com/package/ikagaka.namedmanager.js)
+[![npm](https://img.shields.io/npm/v/ikagaka.namedmanager.js.svg?style=flat)](https://npmjs.com/package/ikagaka.namedmanager.js) [![bower](https://img.shields.io/bower/v/ikagaka.namedmanager.js.svg)](http://bower.io/search/?q=ikagaka)
 
 Ikagaka Window Manager
 
@@ -9,13 +9,8 @@ Ikagaka Window Manager
 ## About
 NamedManager.js is a `Ukagaka` compatible Shell renderer and Window Manager for Web Browser.
 
-## Dependence
-* [Narazaka/surfaces_txt2yaml](https://github.com/Narazaka/surfaces_txt2yaml)
-* [asyncly/EventEmitter2](https://github.com/asyncly/EventEmitter2)
-* [Stuk/jszip](https://github.com/Stuk/jszip)
-* [Ikagaka/NarLoader](https://github.com/Ikagaka/NarLoader/)
-* [polygonplanet/encoding.js](https://github.com/polygonplanet/encoding.js)
-* [jquery/jquery](https://github.com/jquery/jquery)
+* [demo](http://ikagaka.github.io/NamedManager.js/demo/sandbox.html)
+
 
 ## Usage
 
@@ -23,10 +18,7 @@ NamedManager.js is a `Ukagaka` compatible Shell renderer and Window Manager for 
 
 <script src="../bower_components/encoding-japanese/encoding.js"></script>
 <script src="../bower_components/jszip/dist/jszip.min.js"></script>
-<script src="../bower_components/eventemitter2/lib/eventemitter2.js"></script>
-<script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../bower_components/narloader/NarLoader.js"></script>
-<script src="../bower_components/surfaces_txt2yaml/lib/surfaces_txt2yaml.js"></script>
 <script src="../dist/NamedManager.js"></script>
 <script>
 Promise.all([
@@ -157,10 +149,17 @@ npm run build
 #### openCommunicateBox(placeHolder?: string): void
 * communicateboxを表示します。
 
-#### on(event: "select", callback: (ev: BalloonSelectEvent)=> void): EventEmitter2
+#### on(event: "balloon_select", callback: (ev: BalloonSelectEvent)=> void): EventEmitter
+* アンカーか選択肢が押された時
 
-#### on(event: "input", callback: (ev: BalloonInputEvent)=> void): EventEmitter2
+#### on(event: "balloon_input", callback: (ev: BalloonInputEvent)=> void): EventEmitter
+* ユーザーインプットかコミュニケートがあった時
 
+#### on(event: "shell_mouse", callback: (ev: ShellMouseEvent)=> void): EventEmitter
+* サーフェスが触られた時
+
+#### on(event: "balloon_mouse", callback: (ev: BalloonMouseEvent)=> void): EventEmitter
+* バルーンが触られた時
 
 ### Scope Class
 
@@ -175,3 +174,9 @@ npm run build
 #### blimp(blimpId?: number): Blimp
 * `blimpId`のバルーンを表示します。
 * 引数を省略した場合、現在のBlimpを返します。
+
+
+#### position(pos?:{right: number, bottom: number}): {right: number, bottom: number}
+* 指定した座標に移動します。
+* 基準は画面右下です。
+* 引数を省略すると現在の座標が返ります。

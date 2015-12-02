@@ -1,4 +1,4 @@
-{SurfaceUtil} = require("ikagaka.shell.js")
+$ = require("jquery")
 
 class Scope
 
@@ -14,21 +14,20 @@ class Scope
   initDOMStructure: ->
     @$scope = $(@element).addClass("scope")
     @$surface = $("<div />").addClass("surface").appendTo(@$scope)
-    @$surfaceCanvas = $("<canvas width='10' height='100' />") # 謎の大きさ
-    .addClass("surfaceCanvas").appendTo(@$surface)
     @$blimp = $("<div />").addClass("blimp").appendTo(@$scope)
 
     # set default position
     # なんかissueあったような
     @$scope.css
       "bottom": "0px",
-      "right": (@scopeId*240)+"px"
+      "right": (@scopeId*240)+"px",
+      left: null
+      top: null
     return
 
   initSurface: ->
     # currentBlimpは生涯そのまま使いまわす
-    @currentBlimp =
-    @balloon.attachBlimp(@$blimp[0], @scopeId, 0)
+    @currentBlimp = @balloon.attachBlimp(@$blimp[0], @scopeId, 0)
     @surface(0) # まず要素に大きさを持たせる
     @blimp(0) # まず要素に大きさを持たせる
     @surface(-1) # そして消す
@@ -36,7 +35,7 @@ class Scope
     return
 
   destructor: ()->
-    
+
   surface: (surfaceId)->
     unless surfaceId? then return @currentSurface
     if Number(surfaceId) < 0 # 数値かつ負の値なら非表示
@@ -45,12 +44,12 @@ class Scope
     unless @shell.hasSurface(@scopeId, surfaceId)
       console.warn("Scope#surface > ReferenceError: surfaceId", surfaceId, "is not defined")
       return @currentSurface
-    @shell.detachSurface(@$surfaceCanvas[0])
-    @currentSurface = @shell.attachSurface(@$surfaceCanvas[0], @scopeId, surfaceId)
+    @shell.detachSurface(@$surface[0])
+    @currentSurface = @shell.attachSurface(@$surface[0], @scopeId, surfaceId)
     # スコープのラッパ要素をサーフェスと同じ大きさにすることで
     # バルーンの位置計算をしやすくしている
-    @$scope.width(this.$surfaceCanvas[0].width)
-    @$scope.height(this.$surfaceCanvas[0].height)
+    @$scope.width(this.$surface.width())
+    @$scope.height(this.$surface.height())
     @$surface.show()
     @currentSurface
 
@@ -69,7 +68,20 @@ class Scope
           left: Number(@shell.descript["#{@type}.balloon.offsetx"] || 0) + -1 * @$blimp.width()
       else
         @$blimp.css
-          left: Number(@shell.descript["#{@type}.balloon.offsetx"] || 0) + @$surfaceCanvas[0].width
+          left: Number(@shell.descript["#{@type}.balloon.offsetx"] || 0) + @$surface.width()
       return
 
-exports.Scope = Scope
+  position: (obj)->
+    if obj?
+      @$scope.css
+        "bottom": obj.bottom
+        "right": obj.right
+        "left": ""
+        "top": ""
+    {top, left}= @$scope.offset()
+    return {
+      # なんだよこの座標計算
+      right:  window.innerWidth  - window.scrollX - left - @$surface.width()
+      bottom: window.innerHeight - window.scrollY - top  - @$surface.height()
+    }
+module.exports = Scope

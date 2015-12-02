@@ -1,16 +1,9 @@
 {
   "name": "ikagaka.namedmanager.js",
-  "version": "4.0.2",
+  "version": "4.1.8",
   "description": "Ikagaka Window Manager",
   "license": "MIT",
-  "dependencies": {
-    "surfaces_txt2yaml": "Narazaka/surfaces_txt2yaml",
-    "encoding-japanese": "~1.0.23",
-    "text-encoding": "~0.5.3",
-    "jszip": "*",
-    "eventemitter2": "~0.4.14",
-    "jquery": "*"
-  },
+  "dependencies": {},
   "devDependencies": {
     "qunit": "*",
     "narloader": "*",
@@ -26,11 +19,11 @@
     "nar"
   ],
   "homepage": "https://github.com/Ikagaka/NamedManager.js",
-  "_release": "4.0.2",
+  "_release": "4.1.8",
   "_resolution": {
     "type": "version",
-    "tag": "v4.0.2",
-    "commit": "84d56a281b80f33678061dd6dc603c71e0ef4c72"
+    "tag": "v4.1.8",
+    "commit": "0cff5f2c441c3600518d95aec394da5f626eba3f"
   },
   "_source": "git://github.com/Ikagaka/NamedManager.js.git",
   "_target": "*",
