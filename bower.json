@@ -4,7 +4,7 @@
   "description": "demo",
   "license": "MIT",
   "dependencies": {
-    "ikagaka.namedmanager.js": "Ikagaka/NamedManager.js",
+    "ikagaka.namedmanager.js": "Ikagaka/NamedManager.js#master",
     "narloader": "Ikagaka/NarLoader"
   },
   "devDependencies": {
