@@ -1,12 +1,10 @@
 {
-  "name": "cuttlebone-demo",
+  "name": "namedmanager-demo",
   "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "narloader": "Ikagaka/Narloader#master",
     "ikagaka.shell.js": "Ikagaka/Shell.js#master",
-    "ikagaka.balloon.js": "Ikagaka/Balloon.js#master",
-    "ikagaka.sakurascriptplayer.js": "Ikagaka/SakuraScriptPlayer.js#master"
+    "ikagaka.balloon.js": "Ikagaka/Balloon.js#master"
   },
   "ignore": [
     "**/.*",
