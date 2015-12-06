@@ -5,6 +5,8 @@
   "license": "MIT",
   "dependencies": {
     "ikagaka.namedmanager.js": "Ikagaka/NamedManager.js#master",
+    "ikagaka.shell.js": "Ikagaka/Shell.js#master",
+    "ikagaka.balloon.js": "Ikagaka/Balloon.js#master",
     "narloader": "Ikagaka/NarLoader"
   },
   "devDependencies": {
